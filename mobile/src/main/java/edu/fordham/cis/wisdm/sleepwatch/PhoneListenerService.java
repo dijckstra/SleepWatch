@@ -1,8 +1,5 @@
 package edu.fordham.cis.wisdm.sleepwatch;
 
-import android.app.Service;
-import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;

@@ -10,12 +10,7 @@ import android.os.PowerManager;
 import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.wearable.Asset;
-import com.google.android.gms.wearable.DataApi;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.PutDataMapRequest;
 import com.google.android.gms.wearable.PutDataRequest;
 import com.google.android.gms.wearable.Wearable;
@@ -31,7 +26,6 @@ public class WearSensorLogService extends WearableListenerService implements Sen
     private static final String ACCEL_ASSET = "ACCEL_ASSET";
     private static final String GYRO_ASSET = "GYRO_ASSET";
     private static final String DATA = "/data";
-    private static final String STOP = "/stop";
 
     private ArrayList<ThreeTupleRecord> mWatchAccelerometerRecords = new ArrayList<>();
     private ArrayList<ThreeTupleRecord> mWatchGyroscopeRecords = new ArrayList<>();
@@ -84,7 +78,7 @@ public class WearSensorLogService extends WearableListenerService implements Sen
         super.onDestroy();
         mSensorManager.unregisterListener(WearSensorLogService.this, mAccelerometer);
         mSensorManager.unregisterListener(WearSensorLogService.this, mGyroscope);
-        sendMessage(STOP);
+        sendData();
 
         if (null != mGoogleApiClient && mGoogleApiClient.isConnected()) {
             mGoogleApiClient.disconnect();
@@ -140,39 +134,5 @@ public class WearSensorLogService extends WearableListenerService implements Sen
         dataMap.getDataMap().putAsset(GYRO_ASSET, gyroAsset);
         PutDataRequest request = dataMap.asPutDataRequest();
         Wearable.DataApi.putDataItem(mGoogleApiClient, request);
-    }
-
-    private void sendMessage(final String message) {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .build();
-        mGoogleApiClient.connect();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                NodeApi.GetConnectedNodesResult nodes =
-                        Wearable.NodeApi.getConnectedNodes(mGoogleApiClient).await();
-
-                Log.d(TAG, "Nodes: " + nodes.getNodes().size());
-
-                for (Node node : nodes.getNodes()) {
-
-                    MessageApi.SendMessageResult result =
-                            Wearable.MessageApi.sendMessage(mGoogleApiClient, node.getId(),
-                                    message, message.getBytes()).await();
-
-                    Log.d(TAG, "Sent to node: " + node.getId() +
-                            " with display name: " + node.getDisplayName());
-
-                    if (!result.getStatus().isSuccess()) {
-                        Log.e(TAG, "ERROR: failed to send Message: " + result.getStatus());
-                    }
-                    else {
-                        Log.d(TAG, "Message Successfully sent.");
-                    }
-                }
-            }
-        }).start();
     }
 }
