@@ -30,6 +30,12 @@
                 <data android:scheme="wear" android:host="*"
                     android:path="/data" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.MESSAGE_RECEIVED" />
+                <data android:scheme="wear" android:host="*"
+                    android:path="/test" />
+            </intent-filter>
         </service>
     </application>
 

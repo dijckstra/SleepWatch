@@ -36,9 +36,6 @@ public class WearSensorLogService extends WearableListenerService implements Sen
     private Sensor mAccelerometer;
     private Sensor mGyroscope;
 
-    public WearSensorLogService() {
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -53,7 +50,6 @@ public class WearSensorLogService extends WearableListenerService implements Sen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Log.d(TAG, "Collected data: " + event.values[0] + ", " + event.values[1] + ", " + event.values[2]);
         switch (event.sensor.getType()) {
             case Sensor.TYPE_ACCELEROMETER:
                 mWatchAccelerometerRecords.add(

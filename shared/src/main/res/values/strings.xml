@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SharedLibrary</string>
+    <string name="begin_sleep">Begin sleep now</string>
+    <string name="awake">I\'m awake</string>
+    <string name="fa_icon_bed">&#xf236;</string>
+    <string name="fa_icon_awake">&#xf1ae;</string>
+</resources>

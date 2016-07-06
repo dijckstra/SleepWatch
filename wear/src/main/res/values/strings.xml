@@ -3,4 +3,6 @@
     <string name="hello_round">Hello Round World!</string>
     <string name="hello_square">Hello Square World!</string>
     <string name="collect">Collect data</string>
+    <string name="test">Test</string>
+    <string name="begin_sleep">Begin sleep now</string>
 </resources>

@@ -1,6 +1,10 @@
 package edu.fordham.cis.wisdm.sleepwatch;
 
+import android.content.Intent;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -20,8 +24,6 @@ import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class PhoneListenerService extends WearableListenerService {
-    public PhoneListenerService() {
-    }
 
     private static final String TAG = "PhoneListenerService";
     private static final String ACCEL_ASSET = "ACCEL_ASSET";
@@ -52,7 +54,18 @@ public class PhoneListenerService extends WearableListenerService {
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
         super.onMessageReceived(messageEvent);
-        Log.d(TAG, "onMessageReceived called");
+
+//        Handler handler = new Handler(Looper.getMainLooper());
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(getApplicationContext(), "Message received.", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+//        Intent i = new Intent(this, MainActivity.class);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//        startActivity(i);
     }
 
     private void writeFiles(ArrayList<ThreeTupleRecord> watchAccelRecords,

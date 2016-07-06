@@ -1,14 +1,17 @@
 package edu.fordham.cis.wisdm.sleepwatch;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.wearable.Wearable;
 
-public class MainActivity extends AppCompatActivity {
+import edu.fordham.cis.wisdm.sleepwatch.sharedlibrary.FontManager;
+
+public class MainActivity extends Activity {
 
     private static final String TAG = "SensorLogActivity";
     private GoogleApiClient mGoogleApiClient;
@@ -17,8 +20,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initializeGoogleApiClient();
 
+        TextView textView = (TextView) findViewById(R.id.bed);
+        textView.setTypeface(FontManager.getTypeface(this, FontManager.FONTAWESOME));
+
+        initializeGoogleApiClient();
     }
 
     @Override

@@ -1,12 +1,11 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "edu.fordham.cis.wisdm.sleepwatch"
-        minSdkVersion 21
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -21,11 +20,6 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    wearApp project(':wear')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.google.android.gms:play-services:9.0.2'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'com.getbase:floatingactionbutton:1.9.1'
-    compile project(':shared')
 }

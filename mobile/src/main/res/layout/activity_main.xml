@@ -10,7 +10,14 @@
     tools:context="edu.fordham.cis.wisdm.sleepwatch.MainActivity">
 
     <TextView
+        android:id="@+id/bed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/fa_icon_bed"
+        android:textSize="50sp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
