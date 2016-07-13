@@ -21,9 +21,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textView = (TextView) findViewById(R.id.bed);
-        textView.setTypeface(FontManager.getTypeface(this, FontManager.FONTAWESOME));
-
         initializeGoogleApiClient();
     }
 
