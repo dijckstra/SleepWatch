@@ -17,11 +17,6 @@ public class MainActivity extends Activity {
     private static final String TAG = "MainActivity";
     private static boolean TOGGLE = false;
 
-    private TextView buttonIcon;
-    private TextView buttonDescription;
-    private Drawable bgSun, bgMoon;
-    private ImageView background;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,13 +25,8 @@ public class MainActivity extends Activity {
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
-                buttonIcon = (TextView) findViewById(R.id.button_icon);
+                TextView buttonIcon = (TextView) findViewById(R.id.button_icon);
                 buttonIcon.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME));
-
-                buttonDescription = (TextView) findViewById(R.id.button_description);
-                bgSun = getDrawable(R.drawable.bg_sun);
-                bgMoon = getDrawable(R.drawable.bg_moon);
-                background = (ImageView) findViewById(R.id.background);
             }
         });
 
@@ -48,7 +38,13 @@ public class MainActivity extends Activity {
     public void toggleSleep(View view) {
         TOGGLE = !TOGGLE;
         Intent i = new Intent(getApplicationContext(), WearSensorLogService.class);
+
+        TextView buttonIcon = (TextView) findViewById(R.id.button_icon);
+        TextView buttonDescription = (TextView) findViewById(R.id.button_description);
         TransitionDrawable set;
+        Drawable bgSun = getResources().getDrawable(R.drawable.bg_sun, null);
+        Drawable bgMoon = getResources().getDrawable(R.drawable.bg_moon, null);
+        ImageView background = (ImageView) findViewById(R.id.background);
 
         if (TOGGLE) {
             buttonIcon.setText(R.string.fa_icon_awake);
@@ -76,15 +72,15 @@ public class MainActivity extends Activity {
             stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
                 @Override
                 public void onLayoutInflated(WatchViewStub stub) {
-                    buttonIcon = (TextView) findViewById(R.id.button_icon);
+                    TextView buttonIcon = (TextView) findViewById(R.id.button_icon);
                     buttonIcon.setText(R.string.fa_icon_awake);
                     buttonIcon.setTypeface(FontManager.getTypeface(getApplicationContext(), FontManager.FONTAWESOME));
 
-                    buttonDescription = (TextView) findViewById(R.id.button_description);
+                    TextView buttonDescription = (TextView) findViewById(R.id.button_description);
                     buttonDescription.setText(R.string.awake);
 
-                    bgMoon = getDrawable(R.drawable.bg_moon);
-                    background = (ImageView) findViewById(R.id.background);
+                    Drawable bgMoon = getDrawable(R.drawable.bg_moon);
+                    ImageView background = (ImageView) findViewById(R.id.background);
                     background.setImageDrawable(bgMoon);
                 }
             });

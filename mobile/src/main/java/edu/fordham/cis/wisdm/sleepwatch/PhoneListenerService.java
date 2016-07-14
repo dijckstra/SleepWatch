@@ -1,10 +1,6 @@
 package edu.fordham.cis.wisdm.sleepwatch;
 
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -12,7 +8,6 @@ import com.google.android.gms.wearable.Asset;
 import com.google.android.gms.wearable.DataEvent;
 import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
-import com.google.android.gms.wearable.MessageEvent;
 import com.google.android.gms.wearable.Wearable;
 import com.google.android.gms.wearable.WearableListenerService;
 
@@ -49,23 +44,6 @@ public class PhoneListenerService extends WearableListenerService {
                 writeFiles(watchAccelData, watchGyroData);
             }
         }
-    }
-
-    @Override
-    public void onMessageReceived(MessageEvent messageEvent) {
-        super.onMessageReceived(messageEvent);
-
-//        Handler handler = new Handler(Looper.getMainLooper());
-//        handler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                Toast.makeText(getApplicationContext(), "Message received.", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-//        Intent i = new Intent(this, MainActivity.class);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        startActivity(i);
     }
 
     private void writeFiles(ArrayList<ThreeTupleRecord> watchAccelRecords,
