@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".PlotDisplayActivity"
+            android:screenOrientation="fullUser"/>
+
         <service
             android:name=".PhoneListenerService"
             android:enabled="true">

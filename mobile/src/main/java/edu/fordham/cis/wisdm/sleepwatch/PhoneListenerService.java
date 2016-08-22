@@ -1,5 +1,7 @@
 package edu.fordham.cis.wisdm.sleepwatch;
 
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -44,6 +46,9 @@ public class PhoneListenerService extends WearableListenerService {
                 writeFiles(watchAccelData, watchGyroData);
             }
         }
+
+        Intent intent = new Intent("update-list");
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
     private void writeFiles(ArrayList<ThreeTupleRecord> watchAccelRecords,
